@@ -1,0 +1,58 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.0.RELEASE'
+		gradleNodeVersion = '1.2.0'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.grails.org/grails/core" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
+
+group = 'es.vuejsazure.workshop'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	implementation('org.springframework.boot:spring-boot-starter-data-rest')
+	implementation('com.h2database:h2')
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	compile("org.aspectj:aspectjweaver:1.8.8")
+}
+
+
+task renameWar(type: Copy) {
+    group = 'build'
+    description = 'Rename war file name for tomcat deployment'
+    file("${buildDir}/libs/demo-0.0.1-SNAPSHOT.war").renameTo(file("${buildDir}/libs/ROOT.war"))
+}
+
+task copyClient(type: Copy) {
+    group = 'build'
+    description = 'Copy client side assets for production'
+    from "${projectDir}/ui/dist/"
+    into "${projectDir}/src/main/resources/static/"
+}
+
+task cleanBuild(type: Delete, dependsOn: 'build') {
+	delete "${projectDir}/src/main/resources/static", "${projectDir}/ui/node_modules/"
+}
+
+processResources.dependsOn copyClient
+clean.dependsOn cleanBuild
