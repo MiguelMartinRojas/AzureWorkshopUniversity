@@ -12,10 +12,10 @@ import es.vuejsazure.workshop.demo.entities.Todo;
 @SpringBootApplication
 @EnableAspectJAutoProxy
 
-public class DemoApplication   extends SpringBootServletInitializer {
+public class UniversityApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(UniversityApplication.class, args);
 		Todo t = new Todo();
 		t.setTitle("a");
 	}
