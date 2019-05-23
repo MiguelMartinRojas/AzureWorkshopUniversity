@@ -14,7 +14,7 @@ public class TestController {
     public ResponseEntity<String> getMessage(){
 
 
-        return new ResponseEntity<>("Hello 1", HttpStatus.OK);
+        return new ResponseEntity<>("Hello 2", HttpStatus.OK);
     }
 
 }
