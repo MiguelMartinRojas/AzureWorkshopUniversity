@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/v1/test", produces = "application/json")
+@RequestMapping(path = "/test", produces = "application/json")
 public class TestController {
 
     @GetMapping
