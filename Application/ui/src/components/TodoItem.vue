@@ -1,20 +1,23 @@
 <template>
-  <div class="todo-item">
-    <li>
-        <input type="checkbox" :id="todo.id" v-model="todo.completed" @change="todoCompleted">
-        <label :for="todo.id">{{ todo.title }}</label>
-    </li>
-  </div>
+    <div class="todoItem">
+        <input type="checkbox" v-model="todo.done" @change="updateTodo"> {{ todo.text }}
+        <button type="button" @click.prevent="deleteTodo">Borrar</button>
+    </div>
 </template>
 
 <script>
 export default {
-  name: 'todo-item',
-  props: ['todo'],
-  methods: {
-      todoCompleted: function () {
-          this.$emit('completed')
-      }
-  }
+    name: 'TodoItem',
+    props: [
+        'todo'
+    ],
+    methods: {
+        updateTodo() {
+            this.$emit('onUpdateTodo', this.todo)
+        },
+        deleteTodo() {
+            this.$emit('onDeleteTodo', this.todo)
+        }
+    }
 }
 </script>

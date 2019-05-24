@@ -1,4 +1,4 @@
-# vue-workshop
+# ui
 
 ## Project setup
 ```

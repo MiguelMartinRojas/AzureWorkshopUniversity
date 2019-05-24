@@ -1,3 +1,9 @@
 module.exports = {
-  baseUrl: './'
+  devServer: {
+    proxy: {
+      '/todos': {
+        target: 'http://localhost:8080'
+      }
+    }
+  }
 }
