@@ -5,24 +5,23 @@ import javax.persistence.Entity;
 
 @Entity
 public class Todo extends AbstractPersistable<Long> {
-    
-    private String title;
 
-    private Boolean completed;
+    private String text;
+    private boolean done;
 
-    public String getTitle() {
-        return title;
+    public String getText() {
+        return text;
     }
 
-    public Boolean getCompleted() {
-        return completed;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public void setCompleted(Boolean completed) {
-        this.completed = completed;
+    public boolean getDone() {
+        return done;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setDone(boolean done) {
+        this.done = done;
     }
 }

@@ -16,8 +16,6 @@ public class UniversityApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(UniversityApplication.class, args);
-		Todo t = new Todo();
-		t.setTitle("a");
 	}
 	@Bean MyAspect myAspect(){
 		return new MyAspect();
